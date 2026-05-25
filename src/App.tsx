@@ -5,7 +5,7 @@ import { Icon } from './components/Icon';
 
 export function App() {
   return (
-    <main className="app-shell" aria-label="FitApp">
+    <main className="app-shell" aria-label="GymApp">
       <Sidebar />
 
       <section className="content">
