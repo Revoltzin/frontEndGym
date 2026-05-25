@@ -6,11 +6,11 @@ export function Sidebar() {
   return (
     <aside className="sidebar" aria-label="Menu principal">
       <div>
-        <a className="brand" href="#" aria-label="FitApp inicio">
+        <a className="brand" href="#" aria-label="GymApp inicio">
           <span className="brand-icon" aria-hidden="true">
             <Icon name="dumbbell" />
           </span>
-          <span>FitApp</span>
+          <span>GymApp</span>
         </a>
 
         <nav className="nav-list">
