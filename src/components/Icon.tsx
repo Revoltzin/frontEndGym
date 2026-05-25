@@ -1,0 +1,40 @@
+type IconName =
+  | 'home'
+  | 'dumbbell'
+  | 'user'
+  | 'logout'
+  | 'calendar'
+  | 'chevronRight'
+  | 'plus'
+  | 'bolt'
+  | 'arm'
+  | 'legs'
+  | 'back';
+
+type IconProps = {
+  name: IconName;
+  className?: string;
+};
+
+const paths: Record<IconName, string> = {
+  home: 'M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 19.5z',
+  dumbbell: 'M4 9v6M8 7v10M16 7v10M20 9v6M8 12h8',
+  user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9a7 7 0 0 1 14 0',
+  logout: 'M14 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-3M9 12h12m0 0-4-4m4 4-4 4',
+  calendar: 'M7 3v4M17 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
+  chevronRight: 'm9 18 6-6-6-6',
+  plus: 'M12 5v14M5 12h14',
+  bolt: 'm13 2-9 12h7l-1 8 10-13h-7z',
+  arm: 'M8 20c-2 0-3.5-1.2-3.5-3.5 0-2.1 1.6-4.4 3.1-6.3.5-.6 1.5-.3 1.5.5v3.1c0 .7.8 1 1.3.5l1.7-1.7c.5-.5 1.5-.2 1.5.6v2.3H16a2.5 2.5 0 0 1 0 5z',
+  legs: 'M12 3c2 3 2.8 5.5 1.2 7.6L16 20h-3l-2-6-2 6H6l2.9-8.5C7.2 9.2 8.5 5.6 12 3z',
+  back: 'M7 8c-1.5 1-2.5 2.4-2.5 4.5M17 8c1.5 1 2.5 2.4 2.5 4.5M8 11v3c0 2.2 1.8 4 4 4s4-1.8 4-4v-3M10 6l2 4 2-4M9 20h6',
+};
+
+export function Icon({ name, className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+      <path d={paths[name]} />
+    </svg>
+  );
+}
+
