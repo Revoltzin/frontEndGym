@@ -1,9 +1,9 @@
 import type { NavItem, Workout } from '../types';
 
 export const navItems: NavItem[] = [
-  { label: 'Inicio', icon: 'home', active: true },
-  { label: 'Treinos', icon: 'dumbbell' },
-  { label: 'Perfil', icon: 'user' },
+  { id: 'home', label: 'Inicio', icon: 'home' },
+  { id: 'workouts', label: 'Treinos', icon: 'dumbbell' },
+  { id: 'profile', label: 'Perfil', icon: 'user' },
 ];
 
 export const workouts: Workout[] = [
@@ -32,4 +32,3 @@ export const workouts: Workout[] = [
     icon: 'back',
   },
 ];
-

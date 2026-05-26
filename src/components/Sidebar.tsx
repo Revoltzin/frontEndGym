@@ -1,33 +1,37 @@
 import { navItems } from '../data/workouts';
 import { Icon } from './Icon';
 import avatarUrl from '../assets/avatar.svg';
+import type { PageId } from '../types';
 
 type SidebarProps = {
+  activePage: PageId;
+  onNavigate: (page: PageId) => void;
   onLogout: () => void;
 };
 
-export function Sidebar({ onLogout }: SidebarProps) {
+export function Sidebar({ activePage, onNavigate, onLogout }: SidebarProps) {
   return (
     <aside className="sidebar" aria-label="Menu principal">
       <div>
-        <a className="brand" href="#" aria-label="GymApp inicio">
+        <button className="brand" type="button" aria-label="GymApp inicio" onClick={() => onNavigate('home')}>
           <span className="brand-icon" aria-hidden="true">
             <Icon name="dumbbell" />
           </span>
           <span>GymApp</span>
-        </a>
+        </button>
 
         <nav className="nav-list">
           {navItems.map((item) => (
-            <a
+            <button
               key={item.label}
-              className={item.active ? 'nav-item active' : 'nav-item'}
-              href="#"
-              aria-current={item.active ? 'page' : undefined}
+              className={item.id === activePage ? 'nav-item active' : 'nav-item'}
+              type="button"
+              onClick={() => onNavigate(item.id)}
+              aria-current={item.id === activePage ? 'page' : undefined}
             >
               <Icon name={item.icon} />
               {item.label}
-            </a>
+            </button>
           ))}
         </nav>
       </div>
@@ -38,13 +42,14 @@ export function Sidebar({ onLogout }: SidebarProps) {
           Sair
         </button>
 
-        <section className="user-card" aria-label="Usuario logado">
+        <button className="user-card" type="button" onClick={() => onNavigate('profile')} aria-label="Abrir perfil">
           <img src={avatarUrl} alt="Foto de Joao Silva" />
           <div>
             <strong>Joao Silva</strong>
             <span>Atleta</span>
           </div>
-        </section>
+          <Icon name="chevronRight" />
+        </button>
       </div>
     </aside>
   );

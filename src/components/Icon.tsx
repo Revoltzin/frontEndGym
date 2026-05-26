@@ -10,6 +10,10 @@ type IconName =
   | 'arrowLeft'
   | 'mail'
   | 'lock'
+  | 'eye'
+  | 'camera'
+  | 'upload'
+  | 'save'
   | 'shield'
   | 'check'
   | 'heartPulse'
@@ -35,6 +39,10 @@ const paths: Record<IconName, string> = {
   arrowLeft: 'M19 12H5m0 0 6-6m-6 6 6 6',
   mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
   lock: 'M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6zM12 15v2',
+  eye: 'M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+  camera: 'M4 7h3l2-3h6l2 3h3v13H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+  upload: 'M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3',
+  save: 'M5 3h12l2 2v16H5zM8 3v6h8V3M8 21v-7h8v7',
   shield: 'M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
   check: 'm5 12 4 4L19 6',
   heartPulse: 'M20.8 8.6c0 5-8.8 10.4-8.8 10.4S3.2 13.6 3.2 8.6A4.6 4.6 0 0 1 12 6a4.6 4.6 0 0 1 8.8 2.6zM7 12h3l1-2 2 5 1.5-3H17',

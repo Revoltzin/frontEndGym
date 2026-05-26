@@ -1,7 +1,9 @@
+export type PageId = 'home' | 'workouts' | 'profile';
+
 export type NavItem = {
+  id: PageId;
   label: string;
   icon: 'home' | 'dumbbell' | 'user' | 'logout';
-  active?: boolean;
 };
 
 export type Workout = {
