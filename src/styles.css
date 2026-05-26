@@ -43,6 +43,11 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
+button,
+input {
+    font: inherit;
+}
+
 svg {
     width: 22px;
     height: 22px;
@@ -134,6 +139,10 @@ svg {
 
 .logout {
     margin: 0 18px;
+    width: calc(100% - 36px);
+    border: 0;
+    background: transparent;
+    cursor: pointer;
 }
 
 .user-card {
@@ -364,6 +373,376 @@ svg {
     line-height: 1.55;
 }
 
+.login-page {
+    width: min(1440px, calc(100vw - 44px));
+    min-height: min(900px, calc(100vh - 56px));
+    display: grid;
+    place-items: center;
+    padding: 44px;
+    background:
+        linear-gradient(135deg, rgba(98, 54, 233, 0.86) 0%, rgba(174, 133, 213, 0.75) 47%, rgba(255, 166, 86, 0.55) 100%),
+        var(--purple);
+}
+
+.login-panel {
+    width: min(1320px, 100%);
+    min-height: min(760px, calc(100vh - 120px));
+    display: grid;
+    grid-template-columns: 0.9fr 1.35fr;
+    overflow: hidden;
+    border-radius: 34px;
+    background: var(--surface);
+    box-shadow: 0 34px 90px rgba(31, 18, 83, 0.22);
+}
+
+.login-form-side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 78px 88px;
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.back-button {
+    position: absolute;
+    top: 48px;
+    left: 54px;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 12px;
+    background: #f7f5fb;
+    color: var(--purple);
+    cursor: pointer;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+    background: var(--purple-soft);
+    outline: 4px solid rgba(98, 54, 233, 0.14);
+}
+
+.login-brand {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    margin-bottom: 42px;
+    color: var(--text);
+}
+
+.login-brand-icon {
+    width: 78px;
+    height: 78px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #8b56ff, var(--purple));
+    color: #ffffff;
+    box-shadow: 0 20px 34px rgba(98, 54, 233, 0.24);
+}
+
+.login-brand-icon svg {
+    width: 44px;
+    height: 44px;
+    stroke-width: 2.7;
+}
+
+.login-brand strong {
+    font-size: 18px;
+}
+
+.login-header {
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.login-header h1 {
+    margin: 0 0 12px;
+    font-size: 30px;
+    line-height: 1.15;
+}
+
+.login-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.login-form {
+    display: grid;
+    gap: 24px;
+}
+
+.field {
+    display: grid;
+    gap: 10px;
+    color: #4c4f61;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.input-wrap {
+    min-height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 18px;
+    border: 1px solid #dcdde5;
+    border-radius: 10px;
+    background: #fafbfe;
+    color: #7a7f90;
+}
+
+.input-wrap:focus-within {
+    border-color: rgba(98, 54, 233, 0.68);
+    box-shadow: 0 0 0 4px rgba(98, 54, 233, 0.1);
+}
+
+.input-wrap input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 17px;
+}
+
+.input-wrap input::placeholder {
+    color: #8f94a3;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.form-row a,
+.register-text a {
+    color: var(--purple);
+    font-weight: 800;
+}
+
+.remember-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.remember-option input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--purple);
+}
+
+.login-button {
+    min-height: 64px;
+    margin-top: 18px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7e42f0, var(--purple-dark));
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 20px 34px rgba(98, 54, 233, 0.2);
+}
+
+.login-button:hover,
+.login-button:focus-visible {
+    transform: translateY(-1px);
+    outline: 4px solid rgba(98, 54, 233, 0.16);
+}
+
+.register-text {
+    margin: 38px 0 0;
+    padding: 20px;
+    border: 1px solid #f0edf8;
+    border-radius: 12px;
+    text-align: center;
+    color: #4c4f61;
+    font-size: 16px;
+    box-shadow: 0 12px 24px rgba(30, 26, 60, 0.03);
+}
+
+.login-visual-side {
+    display: grid;
+    place-items: center;
+    padding: 80px;
+    background:
+        radial-gradient(circle at 80% 24%, rgba(255, 129, 38, 0.14), transparent 24%),
+        radial-gradient(circle at 28% 72%, rgba(98, 54, 233, 0.12), transparent 26%),
+        #f4f4f7;
+}
+
+.fitness-visual {
+    position: relative;
+    width: min(560px, 100%);
+    aspect-ratio: 1.15;
+}
+
+.visual-window {
+    position: absolute;
+    inset: 90px 36px 86px 36px;
+    border-radius: 32px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f2ff 100%);
+    border: 10px solid #202071;
+    box-shadow: 0 26px 60px rgba(31, 32, 113, 0.2);
+}
+
+.window-dots {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    display: flex;
+    gap: 8px;
+}
+
+.window-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff7b7b;
+}
+
+.window-dots span:nth-child(2) {
+    background: #ffbd45;
+}
+
+.window-dots span:nth-child(3) {
+    background: var(--green);
+}
+
+.progress-card {
+    position: absolute;
+    left: 24%;
+    right: 8%;
+    top: -30px;
+    min-height: 230px;
+    padding: 38px 42px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 28px 60px rgba(98, 54, 233, 0.16);
+}
+
+.profile-badge {
+    width: 82px;
+    height: 82px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e9ddff, #fff1e3);
+    color: var(--purple);
+}
+
+.profile-badge svg {
+    width: 42px;
+    height: 42px;
+}
+
+.progress-lines {
+    display: grid;
+    gap: 14px;
+}
+
+.progress-lines span {
+    height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #6b49dd 0%, #b397ff 100%);
+}
+
+.progress-lines span:nth-child(2) {
+    width: 82%;
+    background: linear-gradient(90deg, #ded5ff 0%, #f4d9c8 100%);
+}
+
+.progress-bar {
+    height: 10px;
+    margin-top: 28px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #f1dbe0;
+}
+
+.progress-bar i {
+    display: block;
+    width: 68%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--orange);
+}
+
+.shield-card {
+    position: absolute;
+    left: 0;
+    bottom: 26px;
+    width: 150px;
+    height: 150px;
+    display: grid;
+    place-items: center;
+    border-radius: 34px;
+    background: linear-gradient(135deg, #1f2276, #6246d8);
+    color: #ffffff;
+    box-shadow: 0 26px 52px rgba(31, 34, 118, 0.26);
+}
+
+.shield-card > svg {
+    width: 82px;
+    height: 82px;
+    color: #ffb22e;
+    stroke-width: 1.7;
+}
+
+.shield-card span {
+    position: absolute;
+    right: -18px;
+    top: 26px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--green);
+    color: #ffffff;
+    border: 5px solid #f4f4f7;
+}
+
+.goal-card {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 205px;
+    padding: 22px;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 24px 50px rgba(38, 28, 78, 0.14);
+}
+
+.goal-card svg {
+    width: 34px;
+    height: 34px;
+    color: var(--purple);
+}
+
+.goal-card strong {
+    display: block;
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+.goal-card p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
 @media (max-width: 760px) {
     body {
         display: block;
@@ -462,6 +841,90 @@ svg {
         grid-template-columns: 38px 1fr;
         padding: 22px 18px;
     }
+
+    .login-page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 18px;
+        place-items: stretch;
+    }
+
+    .login-panel {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        border-radius: 24px;
+    }
+
+    .login-form-side {
+        padding: 88px 22px 34px;
+    }
+
+    .back-button {
+        top: 26px;
+        left: 22px;
+    }
+
+    .login-brand {
+        margin-bottom: 28px;
+    }
+
+    .login-header {
+        margin-bottom: 34px;
+    }
+
+    .login-header h1 {
+        font-size: 28px;
+    }
+
+    .form-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .login-visual-side {
+        min-height: 360px;
+        padding: 28px;
+    }
+
+    .fitness-visual {
+        width: min(360px, 100%);
+    }
+
+    .visual-window {
+        inset: 62px 18px 64px 18px;
+        border-width: 7px;
+        border-radius: 24px;
+    }
+
+    .progress-card {
+        left: 22%;
+        right: 2%;
+        min-height: 165px;
+        padding: 26px 24px;
+    }
+
+    .profile-badge {
+        width: 58px;
+        height: 58px;
+        margin-bottom: 18px;
+    }
+
+    .shield-card {
+        width: 104px;
+        height: 104px;
+        border-radius: 24px;
+    }
+
+    .shield-card > svg {
+        width: 58px;
+        height: 58px;
+    }
+
+    .goal-card {
+        width: 172px;
+        padding: 18px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -475,4 +938,3 @@ svg {
         max-width: 190px;
     }
 }
-

@@ -13,3 +13,8 @@ export type Workout = {
   icon: 'arm' | 'legs' | 'back';
 };
 
+export type LoginFormValues = {
+  email: string;
+  password: string;
+  remember: boolean;
+};

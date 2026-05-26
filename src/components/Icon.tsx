@@ -7,6 +7,13 @@ type IconName =
   | 'chevronRight'
   | 'plus'
   | 'bolt'
+  | 'arrowLeft'
+  | 'mail'
+  | 'lock'
+  | 'shield'
+  | 'check'
+  | 'heartPulse'
+  | 'target'
   | 'arm'
   | 'legs'
   | 'back';
@@ -25,6 +32,13 @@ const paths: Record<IconName, string> = {
   chevronRight: 'm9 18 6-6-6-6',
   plus: 'M12 5v14M5 12h14',
   bolt: 'm13 2-9 12h7l-1 8 10-13h-7z',
+  arrowLeft: 'M19 12H5m0 0 6-6m-6 6 6 6',
+  mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
+  lock: 'M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6zM12 15v2',
+  shield: 'M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
+  check: 'm5 12 4 4L19 6',
+  heartPulse: 'M20.8 8.6c0 5-8.8 10.4-8.8 10.4S3.2 13.6 3.2 8.6A4.6 4.6 0 0 1 12 6a4.6 4.6 0 0 1 8.8 2.6zM7 12h3l1-2 2 5 1.5-3H17',
+  target: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 12h.01',
   arm: 'M8 20c-2 0-3.5-1.2-3.5-3.5 0-2.1 1.6-4.4 3.1-6.3.5-.6 1.5-.3 1.5.5v3.1c0 .7.8 1 1.3.5l1.7-1.7c.5-.5 1.5-.2 1.5.6v2.3H16a2.5 2.5 0 0 1 0 5z',
   legs: 'M12 3c2 3 2.8 5.5 1.2 7.6L16 20h-3l-2-6-2 6H6l2.9-8.5C7.2 9.2 8.5 5.6 12 3z',
   back: 'M7 8c-1.5 1-2.5 2.4-2.5 4.5M17 8c1.5 1 2.5 2.4 2.5 4.5M8 11v3c0 2.2 1.8 4 4 4s4-1.8 4-4v-3M10 6l2 4 2-4M9 20h6',
@@ -37,4 +51,3 @@ export function Icon({ name, className }: IconProps) {
     </svg>
   );
 }
-

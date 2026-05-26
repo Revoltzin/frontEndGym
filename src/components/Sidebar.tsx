@@ -2,7 +2,11 @@ import { navItems } from '../data/workouts';
 import { Icon } from './Icon';
 import avatarUrl from '../assets/avatar.svg';
 
-export function Sidebar() {
+type SidebarProps = {
+  onLogout: () => void;
+};
+
+export function Sidebar({ onLogout }: SidebarProps) {
   return (
     <aside className="sidebar" aria-label="Menu principal">
       <div>
@@ -29,10 +33,10 @@ export function Sidebar() {
       </div>
 
       <div className="sidebar-bottom">
-        <a className="nav-item logout" href="#">
+        <button className="nav-item logout" type="button" onClick={onLogout}>
           <Icon name="logout" />
           Sair
-        </a>
+        </button>
 
         <section className="user-card" aria-label="Usuario logado">
           <img src={avatarUrl} alt="Foto de Joao Silva" />
@@ -45,4 +49,3 @@ export function Sidebar() {
     </aside>
   );
 }
-
