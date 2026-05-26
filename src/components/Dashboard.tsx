@@ -2,7 +2,11 @@ import { WorkoutCard } from './WorkoutCard';
 import { workouts } from '../data/workouts';
 import { Icon } from './Icon';
 
-export function Dashboard() {
+type DashboardProps = {
+  onCreateWorkout: () => void;
+};
+
+export function Dashboard({ onCreateWorkout }: DashboardProps) {
   return (
     <section className="content dashboard-content">
       <header className="page-header">
@@ -23,7 +27,7 @@ export function Dashboard() {
         ))}
       </section>
 
-      <button className="create-button" type="button">
+      <button className="create-button" type="button" onClick={onCreateWorkout}>
         <Icon name="plus" />
         Criar novo treino
       </button>

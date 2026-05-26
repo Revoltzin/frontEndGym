@@ -4,7 +4,9 @@ type IconName =
   | 'user'
   | 'logout'
   | 'calendar'
+  | 'clipboard'
   | 'chevronRight'
+  | 'arrowRight'
   | 'plus'
   | 'bolt'
   | 'arrowLeft'
@@ -14,6 +16,11 @@ type IconName =
   | 'camera'
   | 'upload'
   | 'save'
+  | 'clock'
+  | 'edit'
+  | 'trash'
+  | 'grip'
+  | 'grid'
   | 'shield'
   | 'check'
   | 'heartPulse'
@@ -33,7 +40,9 @@ const paths: Record<IconName, string> = {
   user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9a7 7 0 0 1 14 0',
   logout: 'M14 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-3M9 12h12m0 0-4-4m4 4-4 4',
   calendar: 'M7 3v4M17 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
+  clipboard: 'M9 4h6l1 2h3v15H5V6h3zM9 4a3 3 0 0 1 6 0M8 11h8M8 15h6',
   chevronRight: 'm9 18 6-6-6-6',
+  arrowRight: 'M5 12h14m0 0-5-5m5 5-5 5',
   plus: 'M12 5v14M5 12h14',
   bolt: 'm13 2-9 12h7l-1 8 10-13h-7z',
   arrowLeft: 'M19 12H5m0 0 6-6m-6 6 6 6',
@@ -43,6 +52,11 @@ const paths: Record<IconName, string> = {
   camera: 'M4 7h3l2-3h6l2 3h3v13H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
   upload: 'M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3',
   save: 'M5 3h12l2 2v16H5zM8 3v6h8V3M8 21v-7h8v7',
+  clock: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+  edit: 'M4 20h4L19 9l-4-4L4 16zM13 7l4 4',
+  trash: 'M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3',
+  grip: 'M9 5h.01M15 5h.01M9 12h.01M15 12h.01M9 19h.01M15 19h.01',
+  grid: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
   shield: 'M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
   check: 'm5 12 4 4L19 6',
   heartPulse: 'M20.8 8.6c0 5-8.8 10.4-8.8 10.4S3.2 13.6 3.2 8.6A4.6 4.6 0 0 1 12 6a4.6 4.6 0 0 1 8.8 2.6zM7 12h3l1-2 2 5 1.5-3H17',

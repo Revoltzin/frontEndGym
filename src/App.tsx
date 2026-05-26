@@ -3,6 +3,7 @@ import { Dashboard } from './components/Dashboard';
 import { LoginPage } from './components/LoginPage';
 import { Sidebar } from './components/Sidebar';
 import { ProfilePage } from './components/ProfilePage';
+import { WorkoutBuilderPage } from './components/WorkoutBuilderPage';
 import type { LoginFormValues, PageId } from './types';
 
 export function App() {
@@ -25,7 +26,9 @@ export function App() {
         onNavigate={setActivePage}
         onLogout={() => setIsAuthenticated(false)}
       />
-      {activePage === 'profile' ? <ProfilePage /> : <Dashboard />}
+      {activePage === 'profile' && <ProfilePage />}
+      {activePage === 'workouts' && <WorkoutBuilderPage onBack={() => setActivePage('home')} />}
+      {activePage === 'home' && <Dashboard onCreateWorkout={() => setActivePage('workouts')} />}
     </main>
   );
 }

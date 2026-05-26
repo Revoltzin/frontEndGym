@@ -1,4 +1,4 @@
-import type { NavItem, Workout } from '../types';
+import type { NavItem, Workout, WorkoutExercise } from '../types';
 
 export const navItems: NavItem[] = [
   { id: 'home', label: 'Inicio', icon: 'home' },
@@ -30,5 +30,53 @@ export const workouts: Workout[] = [
     lastWorkoutDate: '06/05/2024',
     variant: 'orange',
     icon: 'back',
+  },
+];
+
+export const workoutExercises: WorkoutExercise[] = [
+  {
+    id: 1,
+    name: 'Supino reto',
+    muscleGroup: 'Peito',
+    sets: '4',
+    reps: '10 - 12',
+    rest: '60s',
+    icon: 'arm',
+  },
+  {
+    id: 2,
+    name: 'Supino inclinado',
+    muscleGroup: 'Peito',
+    sets: '4',
+    reps: '10 - 12',
+    rest: '60s',
+    icon: 'arm',
+  },
+  {
+    id: 3,
+    name: 'Crucifixo inclinado',
+    muscleGroup: 'Peito',
+    sets: '3',
+    reps: '12 - 15',
+    rest: '45s',
+    icon: 'arm',
+  },
+  {
+    id: 4,
+    name: 'Triceps pulley',
+    muscleGroup: 'Triceps',
+    sets: '3',
+    reps: '12 - 15',
+    rest: '45s',
+    icon: 'back',
+  },
+  {
+    id: 5,
+    name: 'Triceps testa',
+    muscleGroup: 'Triceps',
+    sets: '3',
+    reps: '10 - 12',
+    rest: '45s',
+    icon: 'arm',
   },
 ];
