@@ -32,12 +32,42 @@ export function Dashboard({ onCreateWorkout }: DashboardProps) {
         Criar novo treino
       </button>
 
-      <aside className="motivation-card" aria-label="Mensagem motivacional">
-        <Icon name="bolt" />
-        <div>
-          <strong>Foco no objetivo!</strong>
-          <p>A consistencia e o que transforma esforco em resultado.</p>
-        </div>
+      <aside className="dashboard-side-panel" aria-label="Resumo do atleta">
+        <section className="next-workout-card">
+          <span className="panel-icon">
+            <Icon name="target" />
+          </span>
+          <div>
+            <strong>Proximo treino</strong>
+            <h2>Treino B - Pernas</h2>
+            <p>7 exercicios programados para hoje.</p>
+          </div>
+          <button type="button">
+            Comecar treino
+            <Icon name="arrowRight" />
+          </button>
+        </section>
+
+        <section className="dashboard-stats-card">
+          <div>
+            <span>Treinos feitos</span>
+            <strong>12</strong>
+            <small>este mes</small>
+          </div>
+          <div>
+            <span>Sequencia</span>
+            <strong>4</strong>
+            <small>dias</small>
+          </div>
+        </section>
+
+        <aside className="motivation-card" aria-label="Mensagem motivacional">
+          <Icon name="bolt" />
+          <div>
+            <strong>Foco no objetivo!</strong>
+            <p>A consistencia e o que transforma esforco em resultado.</p>
+          </div>
+        </aside>
       </aside>
     </section>
   );

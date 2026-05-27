@@ -206,10 +206,20 @@ svg {
 }
 
 .dashboard-content {
-    max-width: 620px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(560px, 720px) minmax(300px, 1fr);
+    grid-template-areas:
+        "header header"
+        "title side"
+        "list side"
+        "create side";
+    align-content: start;
+    column-gap: 34px;
 }
 
 .page-header {
+    grid-area: header;
     margin-bottom: 68px;
 }
 
@@ -227,6 +237,7 @@ svg {
 }
 
 .section-title {
+    grid-area: title;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -253,6 +264,7 @@ svg {
 }
 
 .workout-list {
+    grid-area: list;
     display: grid;
     gap: 24px;
 }
@@ -343,6 +355,7 @@ svg {
 }
 
 .create-button {
+    grid-area: create;
     width: 100%;
     min-height: 64px;
     display: flex;
@@ -378,6 +391,109 @@ svg {
     border-radius: 14px;
     background: linear-gradient(135deg, #f6f1ff, #ffffff);
     color: var(--text);
+}
+
+.dashboard-side-panel {
+    grid-area: side;
+    display: grid;
+    gap: 22px;
+    align-content: start;
+    padding-top: 46px;
+}
+
+.next-workout-card,
+.dashboard-stats-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 16px 44px rgba(38, 28, 78, 0.07);
+}
+
+.next-workout-card {
+    display: grid;
+    gap: 18px;
+    padding: 30px;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(98, 54, 233, 0.1), transparent 28%),
+        linear-gradient(135deg, #ffffff, #f8f4ff);
+}
+
+.panel-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--purple-soft);
+    color: var(--purple);
+}
+
+.panel-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.next-workout-card strong {
+    color: var(--purple);
+    font-size: 16px;
+}
+
+.next-workout-card h2 {
+    margin: 8px 0;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.next-workout-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.next-workout-card button {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7441ed, var(--purple-dark));
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.next-workout-card button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.dashboard-stats-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    overflow: hidden;
+}
+
+.dashboard-stats-card div {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.dashboard-stats-card span,
+.dashboard-stats-card small {
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.dashboard-stats-card strong {
+    display: block;
+    margin: 8px 0 4px;
+    color: var(--text);
+    font-size: 34px;
+    line-height: 1;
 }
 
 .motivation-card > svg {
@@ -1494,6 +1610,21 @@ svg {
 }
 
 @media (max-width: 1120px) {
+    .dashboard-content {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "title"
+            "list"
+            "create"
+            "side";
+    }
+
+    .dashboard-side-panel {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+        padding-top: 0;
+    }
+
     .builder-header {
         grid-template-columns: 52px minmax(0, 1fr);
     }
@@ -1572,7 +1703,7 @@ svg {
     }
 
     .dashboard-content {
-        max-width: none;
+        display: block;
     }
 
     .page-header {
@@ -1615,6 +1746,20 @@ svg {
     .motivation-card {
         grid-template-columns: 38px 1fr;
         padding: 22px 18px;
+    }
+
+    .dashboard-side-panel {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 28px;
+    }
+
+    .next-workout-card {
+        padding: 22px 18px;
+    }
+
+    .dashboard-stats-card div {
+        padding: 20px 18px;
     }
 
     .login-page {
