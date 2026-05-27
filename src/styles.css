@@ -1637,7 +1637,7 @@ svg {
 
 .catalog-tools {
     display: grid;
-    grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.7fr) minmax(230px, 0.72fr);
+    grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.65fr) minmax(180px, 0.62fr);
     gap: 18px;
     margin-bottom: 24px;
 }
@@ -1645,6 +1645,7 @@ svg {
 .catalog-search,
 .catalog-filter,
 .custom-exercise-button {
+    min-width: 0;
     min-height: 52px;
     display: flex;
     align-items: center;
@@ -1687,6 +1688,13 @@ svg {
     color: var(--purple);
     background: #ffffff;
     border-color: rgba(98, 54, 233, 0.35);
+    text-align: center;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.custom-exercise-button svg {
+    flex: 0 0 auto;
 }
 
 .muscle-tabs {
@@ -1861,7 +1869,7 @@ svg {
     }
 
     .catalog-tools {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
 
     .custom-exercise-button {
