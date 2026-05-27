@@ -63,10 +63,10 @@ svg {
 }
 
 .app-shell {
-    width: min(1280px, calc(100vw - 32px));
+    width: min(1440px, calc(100vw - 24px));
     min-height: min(900px, calc(100vh - 44px));
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 236px minmax(0, 1fr);
     overflow: hidden;
     background: rgba(255, 255, 255, 0.82);
     border: 1px solid var(--border);
@@ -1062,15 +1062,17 @@ svg {
 
 .workout-builder-content {
     width: 100%;
-    padding: 28px 30px 28px 38px;
+    min-width: 0;
+    padding: 24px 24px 26px 32px;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .builder-header {
     display: grid;
-    grid-template-columns: 56px 1fr minmax(320px, 420px);
+    grid-template-columns: 52px minmax(0, 1fr) minmax(280px, 360px);
     align-items: start;
-    gap: 28px;
+    gap: 20px;
     margin-bottom: 36px;
 }
 
@@ -1166,12 +1168,13 @@ svg {
 
 .builder-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 28px;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 300px);
+    gap: 20px;
     align-items: start;
 }
 
 .builder-main {
+    min-width: 0;
     display: grid;
     gap: 16px;
 }
@@ -1186,7 +1189,7 @@ svg {
 }
 
 .builder-card {
-    padding: 24px 24px;
+    padding: 22px;
 }
 
 .builder-card-title {
@@ -1195,8 +1198,8 @@ svg {
 
 .builder-form {
     display: grid;
-    grid-template-columns: 1fr 0.8fr;
-    gap: 22px 26px;
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 0.72fr);
+    gap: 20px;
 }
 
 .select-like {
@@ -1257,7 +1260,7 @@ svg {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 0 22px;
+    padding: 0 18px;
     border: 0;
     border-radius: 9px;
     background: linear-gradient(135deg, #efe7ff, #e2d5ff);
@@ -1267,7 +1270,8 @@ svg {
 }
 
 .exercise-table {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     border: 1px solid var(--border);
     border-radius: 10px;
     background: #ffffff;
@@ -1276,9 +1280,10 @@ svg {
 .exercise-table-head,
 .exercise-row {
     display: grid;
-    grid-template-columns: 40px minmax(190px, 1fr) 76px 92px 76px 82px;
+    min-width: 620px;
+    grid-template-columns: 32px minmax(150px, 1fr) 66px 82px 66px 70px;
     align-items: center;
-    column-gap: 16px;
+    column-gap: 10px;
 }
 
 .exercise-table-head {
@@ -1290,7 +1295,7 @@ svg {
 
 .exercise-row {
     min-height: 64px;
-    padding: 10px 12px 10px 8px;
+    padding: 10px 10px 10px 8px;
     border-top: 1px solid #eef0f6;
 }
 
@@ -1381,7 +1386,7 @@ svg {
 .row-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 4px;
 }
 
 .add-inline-button {
@@ -1401,23 +1406,24 @@ svg {
 }
 
 .builder-aside {
+    min-width: 0;
     display: grid;
     gap: 24px;
 }
 
 .summary-card {
-    padding: 28px;
+    padding: 24px;
 }
 
 .summary-list {
     display: grid;
-    gap: 22px;
+    gap: 18px;
 }
 
 .summary-item {
     display: grid;
-    grid-template-columns: 26px 1fr;
-    gap: 14px;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
     align-items: start;
 }
 
@@ -1440,7 +1446,7 @@ svg {
 
 .summary-item strong {
     margin-top: 6px;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .builder-tip {
@@ -1449,7 +1455,7 @@ svg {
     grid-template-columns: 34px 1fr;
     align-items: start;
     gap: 16px;
-    padding: 26px 28px;
+    padding: 24px;
     background: linear-gradient(135deg, #f6f1ff, #ffffff);
 }
 
@@ -1485,6 +1491,27 @@ svg {
 
 .builder-footer .save-button {
     min-width: 260px;
+}
+
+@media (max-width: 1120px) {
+    .builder-header {
+        grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .builder-steps {
+        grid-column: 1 / -1;
+        justify-self: end;
+        width: min(520px, 100%);
+    }
+
+    .builder-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .builder-aside {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+        align-items: stretch;
+    }
 }
 
 @media (max-width: 760px) {
@@ -1722,6 +1749,7 @@ svg {
     }
 
     .builder-layout,
+    .builder-aside,
     .builder-form,
     .exercise-table-head,
     .exercise-row {
@@ -1733,6 +1761,7 @@ svg {
     }
 
     .exercise-row {
+        min-width: 0;
         gap: 12px;
         padding: 16px;
     }
