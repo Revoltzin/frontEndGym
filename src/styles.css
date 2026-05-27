@@ -1834,6 +1834,167 @@ svg {
     width: 100%;
 }
 
+.review-step-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+    gap: 22px;
+    align-items: start;
+}
+
+.review-main {
+    min-width: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.review-info-card {
+    padding-bottom: 26px;
+}
+
+.review-info-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.55fr);
+    gap: 28px;
+}
+
+.review-info-list {
+    display: grid;
+    gap: 18px;
+}
+
+.review-info-list div {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 22px;
+    align-items: center;
+}
+
+.review-info-list span,
+.review-meta-list strong {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.review-info-list strong,
+.review-meta-list span {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.review-muscle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-muscle .select-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.review-info-grid::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
+    width: 1px;
+    background: #e6e4ef;
+    transform: translateX(-18px);
+}
+
+.review-meta-list {
+    display: grid;
+    gap: 18px;
+}
+
+.review-meta-list div {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 8px 14px;
+    align-items: center;
+}
+
+.review-meta-list svg {
+    grid-row: 1 / span 2;
+    width: 20px;
+    height: 20px;
+    color: #596073;
+}
+
+.review-meta-list span {
+    display: block;
+}
+
+.review-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.review-table-head,
+.review-row {
+    min-width: 760px;
+    display: grid;
+    grid-template-columns: minmax(260px, 1.3fr) minmax(150px, 0.8fr) 90px 120px 100px;
+    align-items: center;
+    gap: 18px;
+    padding: 0 22px;
+}
+
+.review-table-head {
+    min-height: 44px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 800;
+    border-bottom: 1px solid #edf0f6;
+}
+
+.review-row {
+    min-height: 54px;
+    border-bottom: 1px solid #edf0f6;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.review-row:last-child {
+    border-bottom: 0;
+}
+
+.review-row > strong {
+    color: var(--text);
+}
+
+.review-exercise-name {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text);
+}
+
+.review-exercise-name .exercise-thumb {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+}
+
+.review-exercise-name .exercise-thumb svg {
+    width: 20px;
+    height: 20px;
+}
+
+.review-aside .summary-card {
+    min-height: 316px;
+}
+
+.review-footer {
+    align-items: center;
+}
+
+.review-footer .outline-button,
+.review-footer .save-button {
+    min-width: 210px;
+}
+
 @media (max-width: 1120px) {
     .dashboard-content {
         grid-template-columns: 1fr;
@@ -1868,6 +2029,10 @@ svg {
         grid-template-columns: 1fr;
     }
 
+    .review-step-layout {
+        grid-template-columns: 1fr;
+    }
+
     .catalog-tools {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
@@ -1879,6 +2044,10 @@ svg {
     .builder-aside {
         grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
         align-items: stretch;
+    }
+
+    .review-aside {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2132,11 +2301,29 @@ svg {
 
     .builder-layout,
     .builder-aside,
+    .review-step-layout,
+    .review-info-grid,
+    .review-info-list div,
     .builder-form,
     .catalog-tools,
     .exercise-table-head,
     .exercise-row {
         grid-template-columns: 1fr;
+    }
+
+    .review-info-grid::after {
+        display: none;
+    }
+
+    .review-table-head {
+        display: none;
+    }
+
+    .review-row {
+        min-width: 0;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
     }
 
     .muscle-tabs {

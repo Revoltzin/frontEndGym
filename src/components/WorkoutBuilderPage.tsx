@@ -24,8 +24,22 @@ const catalogExercises = [
 ] as const;
 
 export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const isExerciseStep = step === 2;
+  const isReviewStep = step === 3;
+  const goBack = () => {
+    if (isReviewStep) {
+      setStep(2);
+      return;
+    }
+
+    if (isExerciseStep) {
+      setStep(1);
+      return;
+    }
+
+    onBack();
+  };
 
   return (
     <section className="content workout-builder-content">
@@ -33,8 +47,8 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
         <button
           className="builder-back"
           type="button"
-          onClick={isExerciseStep ? () => setStep(1) : onBack}
-          aria-label={isExerciseStep ? 'Voltar para informacoes do treino' : 'Voltar para inicio'}
+          onClick={goBack}
+          aria-label={step === 1 ? 'Voltar para inicio' : 'Voltar para etapa anterior'}
         >
           <Icon name="arrowLeft" />
         </button>
@@ -44,30 +58,32 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
             Criar novo treino <Icon name="dumbbell" />
           </h1>
           <p>
-            {isExerciseStep
-              ? 'Adicione os exercicios que irao compor o seu treino.'
-              : 'Monte seu treino personalizado adicionando exercicios e definindo detalhes.'}
+            {isReviewStep && 'Revise todas as informacoes do seu treino antes de finalizar.'}
+            {isExerciseStep && 'Adicione os exercicios que irao compor o seu treino.'}
+            {step === 1 && 'Monte seu treino personalizado adicionando exercicios e definindo detalhes.'}
           </p>
         </div>
 
         <ol className="builder-steps" aria-label="Etapas de criacao do treino">
-          <li className={isExerciseStep ? 'done' : 'active'}>
-            <span>{isExerciseStep ? <Icon name="check" /> : '1'}</span>
+          <li className={step > 1 ? 'done' : 'active'}>
+            <span>{step > 1 ? <Icon name="check" /> : '1'}</span>
             <strong>Informacoes</strong>
           </li>
-          <li className={isExerciseStep ? 'active' : undefined}>
-            <span>2</span>
+          <li className={step > 2 ? 'done' : isExerciseStep ? 'active' : undefined}>
+            <span>{step > 2 ? <Icon name="check" /> : '2'}</span>
             <strong>Exercicios</strong>
           </li>
-          <li>
+          <li className={isReviewStep ? 'active' : undefined}>
             <span>3</span>
             <strong>Revisao</strong>
           </li>
         </ol>
       </header>
 
-      {isExerciseStep ? (
-        <WorkoutExerciseStep onBack={onBack} />
+      {isReviewStep ? (
+        <WorkoutReviewStep onBack={() => setStep(2)} onFinish={onBack} />
+      ) : isExerciseStep ? (
+        <WorkoutExerciseStep onBack={onBack} onReview={() => setStep(3)} />
       ) : (
         <>
           <div className="builder-layout">
@@ -231,7 +247,11 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
   );
 }
 
-function WorkoutExerciseStep({ onBack }: WorkoutBuilderPageProps) {
+type WorkoutExerciseStepProps = WorkoutBuilderPageProps & {
+  onReview: () => void;
+};
+
+function WorkoutExerciseStep({ onBack, onReview }: WorkoutExerciseStepProps) {
   return (
     <div className="exercise-step-layout">
       <section className="builder-card exercise-catalog-card" aria-labelledby="add-exercises-title">
@@ -316,7 +336,7 @@ function WorkoutExerciseStep({ onBack }: WorkoutBuilderPageProps) {
             ))}
           </div>
 
-          <button className="save-button full-width-action" type="button">
+          <button className="save-button full-width-action" type="button" onClick={onReview}>
             Proximo: Revisao
             <Icon name="arrowRight" />
           </button>
@@ -327,5 +347,127 @@ function WorkoutExerciseStep({ onBack }: WorkoutBuilderPageProps) {
         </button>
       </aside>
     </div>
+  );
+}
+
+type WorkoutReviewStepProps = {
+  onBack: () => void;
+  onFinish: () => void;
+};
+
+function WorkoutReviewStep({ onBack, onFinish }: WorkoutReviewStepProps) {
+  return (
+    <>
+      <div className="review-step-layout">
+        <div className="review-main">
+          <section className="builder-card review-info-card" aria-labelledby="review-info-title">
+            <div className="card-title builder-card-title">
+              <Icon name="clipboard" />
+              <h2 id="review-info-title">Informacoes do treino</h2>
+            </div>
+
+            <div className="review-info-grid">
+              <div className="review-info-list">
+                <div>
+                  <span>Nome do treino</span>
+                  <strong>Treino A - Peito e Triceps</strong>
+                </div>
+                <div>
+                  <span>Grupo muscular</span>
+                  <strong className="review-muscle">
+                    <span className="select-icon">
+                      <Icon name="arm" />
+                    </span>
+                    Peito
+                  </strong>
+                </div>
+                <div>
+                  <span>Descricao</span>
+                  <strong>Foco em forca e definicao de peito e triceps.</strong>
+                </div>
+              </div>
+
+              <div className="review-meta-list">
+                <div>
+                  <Icon name="clock" />
+                  <strong>Duracao estimada</strong>
+                  <span>60 minutos</span>
+                </div>
+                <div>
+                  <Icon name="calendar" />
+                  <strong>Data de criacao</strong>
+                  <span>10/05/2024</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="builder-card review-exercises-card" aria-labelledby="review-exercises-title">
+            <div className="card-title builder-card-title">
+              <Icon name="dumbbell" />
+              <h2 id="review-exercises-title">Exercicios (5)</h2>
+            </div>
+
+            <div className="review-table" role="table" aria-label="Revisao dos exercicios">
+              <div className="review-table-head" role="row">
+                <span>Exercicio</span>
+                <span>Grupo muscular</span>
+                <span>Series</span>
+                <span>Repeticoes</span>
+                <span>Descanso</span>
+              </div>
+
+              {workoutExercises.map((exercise, index) => (
+                <article className="review-row" role="row" key={exercise.id}>
+                  <div className="review-exercise-name">
+                    <span className="exercise-thumb">
+                      <Icon name={exercise.icon} />
+                    </span>
+                    <strong>
+                      {index + 1}. {exercise.name}
+                    </strong>
+                  </div>
+                  <span>{exercise.muscleGroup}</span>
+                  <strong>{exercise.sets}</strong>
+                  <strong>{exercise.reps}</strong>
+                  <strong>{exercise.rest}</strong>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <aside className="builder-aside review-aside">
+          <section className="summary-card" aria-labelledby="review-summary-title">
+            <div className="card-title builder-card-title">
+              <Icon name="grid" />
+              <h2 id="review-summary-title">Resumo do treino</h2>
+            </div>
+
+            <div className="summary-list">
+              {summaryItems.map((item) => (
+                <div className="summary-item" key={item.label}>
+                  <Icon name={item.icon} />
+                  <div>
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <footer className="builder-footer review-footer">
+        <button className="outline-button" type="button" onClick={onBack}>
+          Voltar
+        </button>
+        <button className="save-button" type="button" onClick={onFinish}>
+          <Icon name="check" />
+          Criar treino
+        </button>
+      </footer>
+    </>
   );
 }
