@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { workoutExercises } from '../data/workouts';
 import { Icon } from './Icon';
 
@@ -13,11 +14,28 @@ const summaryItems = [
   { icon: 'calendar', label: 'Data de criacao', value: '10/05/2024' },
 ] as const;
 
+const muscleTabs = ['Peito', 'Costas', 'Pernas', 'Ombros', 'Biceps', 'Triceps', 'Core', 'Cardio'];
+
+const catalogExercises = [
+  { id: 1, name: 'Supino reto', muscleGroup: 'Peito', icon: 'arm' },
+  { id: 2, name: 'Supino inclinado', muscleGroup: 'Peito', icon: 'arm' },
+  { id: 3, name: 'Crucifixo inclinado', muscleGroup: 'Peito', icon: 'arm' },
+  { id: 4, name: 'Paralelas', muscleGroup: 'Peito', icon: 'back' },
+] as const;
+
 export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
+  const [step, setStep] = useState<1 | 2>(1);
+  const isExerciseStep = step === 2;
+
   return (
     <section className="content workout-builder-content">
       <header className="builder-header">
-        <button className="builder-back" type="button" onClick={onBack} aria-label="Voltar para inicio">
+        <button
+          className="builder-back"
+          type="button"
+          onClick={isExerciseStep ? () => setStep(1) : onBack}
+          aria-label={isExerciseStep ? 'Voltar para informacoes do treino' : 'Voltar para inicio'}
+        >
           <Icon name="arrowLeft" />
         </button>
 
@@ -25,15 +43,19 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
           <h1>
             Criar novo treino <Icon name="dumbbell" />
           </h1>
-          <p>Monte seu treino personalizado adicionando exercicios e definindo detalhes.</p>
+          <p>
+            {isExerciseStep
+              ? 'Adicione os exercicios que irao compor o seu treino.'
+              : 'Monte seu treino personalizado adicionando exercicios e definindo detalhes.'}
+          </p>
         </div>
 
         <ol className="builder-steps" aria-label="Etapas de criacao do treino">
-          <li className="active">
-            <span>1</span>
+          <li className={isExerciseStep ? 'done' : 'active'}>
+            <span>{isExerciseStep ? <Icon name="check" /> : '1'}</span>
             <strong>Informacoes</strong>
           </li>
-          <li>
+          <li className={isExerciseStep ? 'active' : undefined}>
             <span>2</span>
             <strong>Exercicios</strong>
           </li>
@@ -44,8 +66,12 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
         </ol>
       </header>
 
-      <div className="builder-layout">
-        <div className="builder-main">
+      {isExerciseStep ? (
+        <WorkoutExerciseStep onBack={onBack} />
+      ) : (
+        <>
+          <div className="builder-layout">
+            <div className="builder-main">
           <section className="builder-card" aria-labelledby="workout-info-title">
             <div className="card-title builder-card-title">
               <Icon name="clipboard" />
@@ -158,9 +184,9 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
               </button>
             </div>
           </section>
-        </div>
+            </div>
 
-        <aside className="builder-aside">
+            <aside className="builder-aside">
           <section className="summary-card" aria-labelledby="summary-title">
             <div className="card-title builder-card-title">
               <Icon name="grid" />
@@ -187,18 +213,119 @@ export function WorkoutBuilderPage({ onBack }: WorkoutBuilderPageProps) {
               <p>Organize seus exercicios na ordem que voce deseja executa-los.</p>
             </div>
           </aside>
-        </aside>
-      </div>
+            </aside>
+          </div>
 
-      <footer className="builder-footer">
-        <button className="outline-button" type="button" onClick={onBack}>
+          <footer className="builder-footer">
+            <button className="outline-button" type="button" onClick={onBack}>
+              Cancelar
+            </button>
+            <button className="save-button" type="button" onClick={() => setStep(2)}>
+              Proximo: Exercicios
+              <Icon name="arrowRight" />
+            </button>
+          </footer>
+        </>
+      )}
+    </section>
+  );
+}
+
+function WorkoutExerciseStep({ onBack }: WorkoutBuilderPageProps) {
+  return (
+    <div className="exercise-step-layout">
+      <section className="builder-card exercise-catalog-card" aria-labelledby="add-exercises-title">
+        <div className="card-title builder-card-title">
+          <Icon name="grid" />
+          <h2 id="add-exercises-title">Adicionar exercicios</h2>
+        </div>
+
+        <div className="catalog-tools">
+          <label className="catalog-search" aria-label="Buscar exercicio">
+            <Icon name="search" />
+            <input type="search" placeholder="Buscar exercicio..." />
+          </label>
+
+          <button className="catalog-filter" type="button">
+            Grupo muscular
+            <Icon name="chevronRight" />
+          </button>
+
+          <button className="custom-exercise-button" type="button">
+            <Icon name="plus" />
+            Criar exercicio personalizado
+          </button>
+        </div>
+
+        <nav className="muscle-tabs" aria-label="Filtro por grupo muscular">
+          {muscleTabs.map((tab) => (
+            <button className={tab === 'Peito' ? 'active' : undefined} type="button" key={tab}>
+              {tab}
+            </button>
+          ))}
+        </nav>
+
+        <div className="catalog-list" aria-label="Catalogo de exercicios">
+          {catalogExercises.map((exercise) => (
+            <article className="catalog-row" key={exercise.id}>
+              <div className="exercise-name">
+                <span className="exercise-thumb">
+                  <Icon name={exercise.icon} />
+                </span>
+                <div>
+                  <strong>{exercise.name}</strong>
+                  <small>{exercise.muscleGroup}</small>
+                </div>
+              </div>
+
+              <button className="catalog-add-button" type="button">
+                Adicionar
+                <Icon name="plus" />
+              </button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <aside className="exercise-step-aside">
+        <section className="summary-card added-exercises-card" aria-labelledby="added-exercises-title">
+          <div className="exercise-summary-title">
+            <div className="card-title builder-card-title">
+              <Icon name="grid" />
+              <h2 id="added-exercises-title">Exercicios adicionados</h2>
+            </div>
+            <span>5</span>
+          </div>
+
+          <div className="added-exercise-list">
+            {workoutExercises.map((exercise) => (
+              <article className="added-exercise-row" key={exercise.id}>
+                <button className="drag-button" type="button" aria-label={`Reordenar ${exercise.name}`}>
+                  <Icon name="grip" />
+                </button>
+                <span className="exercise-thumb">
+                  <Icon name={exercise.icon} />
+                </span>
+                <div>
+                  <strong>{exercise.name}</strong>
+                  <small>
+                    {exercise.sets} series • {exercise.reps} reps
+                  </small>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <button className="save-button full-width-action" type="button">
+            Proximo: Revisao
+            <Icon name="arrowRight" />
+          </button>
+        </section>
+
+        <button className="outline-button full-width-action" type="button" onClick={onBack}>
           Cancelar
         </button>
-        <button className="save-button" type="button">
-          Proximo: Revisao
-          <Icon name="arrowRight" />
-        </button>
-      </footer>
-    </section>
+      </aside>
+    </div>
   );
 }

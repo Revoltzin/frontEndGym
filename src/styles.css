@@ -1282,6 +1282,20 @@ svg {
     box-shadow: 0 12px 24px rgba(98, 54, 233, 0.22);
 }
 
+.builder-steps .done {
+    color: var(--muted);
+}
+
+.builder-steps .done span {
+    background: linear-gradient(135deg, #7d41ee, var(--purple-dark));
+    color: #ffffff;
+}
+
+.builder-steps .done svg {
+    width: 18px;
+    height: 18px;
+}
+
 .builder-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(280px, 300px);
@@ -1609,6 +1623,209 @@ svg {
     min-width: 260px;
 }
 
+.exercise-step-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+    gap: 22px;
+    align-items: start;
+}
+
+.exercise-catalog-card {
+    min-width: 0;
+    padding-bottom: 28px;
+}
+
+.catalog-tools {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.7fr) minmax(230px, 0.72fr);
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.catalog-search,
+.catalog-filter,
+.custom-exercise-button {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #dcdde8;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--muted);
+    padding: 0 18px;
+}
+
+.catalog-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+}
+
+.catalog-search:focus-within {
+    border-color: rgba(98, 54, 233, 0.65);
+    box-shadow: 0 0 0 4px rgba(98, 54, 233, 0.1);
+}
+
+.catalog-filter,
+.custom-exercise-button {
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.catalog-filter svg {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    transform: rotate(90deg);
+}
+
+.custom-exercise-button {
+    justify-content: center;
+    color: var(--purple);
+    background: #ffffff;
+    border-color: rgba(98, 54, 233, 0.35);
+}
+
+.muscle-tabs {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(70px, 1fr));
+    gap: 10px;
+    border-bottom: 1px solid #eceef5;
+    margin: 0 -22px;
+    padding: 0 22px;
+}
+
+.muscle-tabs button {
+    position: relative;
+    min-height: 48px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.muscle-tabs button.active {
+    color: var(--purple);
+}
+
+.muscle-tabs button.active::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: -1px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--purple);
+}
+
+.catalog-list {
+    display: grid;
+    margin-top: 16px;
+    overflow: hidden;
+    border: 1px solid #edf0f6;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.catalog-row {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px 10px 12px 22px;
+    border-top: 1px solid #edf0f6;
+}
+
+.catalog-row:first-child {
+    border-top: 0;
+}
+
+.catalog-add-button {
+    min-width: 150px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid rgba(98, 54, 233, 0.32);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--purple);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.exercise-step-aside {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+}
+
+.added-exercises-card {
+    display: grid;
+    gap: 18px;
+}
+
+.exercise-summary-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.exercise-summary-title .builder-card-title {
+    margin: 0;
+}
+
+.exercise-summary-title > span {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--purple-soft);
+    color: var(--purple);
+    font-weight: 800;
+}
+
+.added-exercise-list {
+    display: grid;
+    gap: 16px;
+}
+
+.added-exercise-row {
+    display: grid;
+    grid-template-columns: 24px 46px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+}
+
+.added-exercise-row strong,
+.added-exercise-row small {
+    display: block;
+}
+
+.added-exercise-row strong {
+    font-size: 14px;
+}
+
+.added-exercise-row small {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.full-width-action {
+    width: 100%;
+}
+
 @media (max-width: 1120px) {
     .dashboard-content {
         grid-template-columns: 1fr;
@@ -1637,6 +1854,18 @@ svg {
 
     .builder-layout {
         grid-template-columns: 1fr;
+    }
+
+    .exercise-step-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-tools {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .custom-exercise-button {
+        grid-column: 1 / -1;
     }
 
     .builder-aside {
@@ -1896,9 +2125,24 @@ svg {
     .builder-layout,
     .builder-aside,
     .builder-form,
+    .catalog-tools,
     .exercise-table-head,
     .exercise-row {
         grid-template-columns: 1fr;
+    }
+
+    .muscle-tabs {
+        grid-template-columns: repeat(4, 1fr);
+        overflow-x: auto;
+    }
+
+    .catalog-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .catalog-add-button {
+        width: 100%;
     }
 
     .exercise-table-head {

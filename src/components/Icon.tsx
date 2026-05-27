@@ -5,6 +5,7 @@ type IconName =
   | 'logout'
   | 'calendar'
   | 'clipboard'
+  | 'search'
   | 'chevronRight'
   | 'arrowRight'
   | 'plus'
@@ -41,6 +42,7 @@ const paths: Record<IconName, string> = {
   logout: 'M14 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-3M9 12h12m0 0-4-4m4 4-4 4',
   calendar: 'M7 3v4M17 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
   clipboard: 'M9 4h6l1 2h3v15H5V6h3zM9 4a3 3 0 0 1 6 0M8 11h8M8 15h6',
+  search: 'M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15zM16 16l5 5',
   chevronRight: 'm9 18 6-6-6-6',
   arrowRight: 'M5 12h14m0 0-5-5m5 5-5 5',
   plus: 'M12 5v14M5 12h14',
