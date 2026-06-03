@@ -10,9 +10,23 @@ export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activePage, setActivePage] = useState<PageId>('home');
 
-  function handleLogin(_values: LoginFormValues) {
-    setIsAuthenticated(true);
-    setActivePage('home');
+  async function handleLogin(values: LoginFormValues) {
+    try {
+      const response = await fetch('http://localhost:8080/atletas/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: values.email, senha: values.password }),
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setActivePage('home');
+      } else {
+        alert('Email ou senha inválidos!');
+      }
+    } catch {
+      alert('Erro ao conectar com o servidor!');
+    }
   }
 
   if (!isAuthenticated) {
